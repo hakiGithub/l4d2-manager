@@ -3,6 +3,7 @@ package com.haki.l4d2.manage.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 求生之路地图
@@ -38,9 +39,13 @@ public class L4d2Map implements Serializable {
     /**
      * 地图大小
      */
-    private Integer size;
+    private String size;
     /**
      * 地图类型 1为合作 2为对抗 3为生存
      */
     private Integer type;
+    /**
+     *更新时间
+     */
+    private Date updateTime;
 }
