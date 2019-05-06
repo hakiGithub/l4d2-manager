@@ -6,19 +6,22 @@ import com.haki.l4d2.manage.util.JsoupUtil;
 import org.jsoup.nodes.Document;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * 爬虫的抽象类
  */
-public abstract class Spider {
+public abstract class Spider implements Callable<List>{
 
     protected int num = 1;
+
+    protected String url;
 
     public int getNum() {
         return this.num;
     }
 
-    public abstract List<L4d2Map> spider(String url);
+    public abstract List<L4d2Map> spider();
 
     /**
      * @param url      爬取的页面

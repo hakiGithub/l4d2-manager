@@ -1,5 +1,6 @@
 package com.haki.l4d2.manage.pojo;
 
+import com.haki.l4d2.manage.util.annotation.SpiderConfig;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -48,4 +49,14 @@ public class L4d2Map implements Serializable {
      *更新时间
      */
     private Date updateTime;
+    /**
+     * 文件名称
+     */
+    private String fileName;
+    /**
+     *
+     * 地图作者
+     *
+     */
+    private String author;
 }
