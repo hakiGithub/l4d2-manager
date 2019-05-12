@@ -1,6 +1,6 @@
 package com.haki.l4d2.manage;
 
-import com.haki.l4d2.manage.pojo.L4d2Map;
+import com.haki.l4d2.manage.pojo.L4d2MapDTO;
 import com.haki.l4d2.manage.spider.Spider;
 import com.haki.l4d2.manage.spider.impl.L4D2ccSpider;
 import com.haki.l4d2.manage.util.JsoupUtil;
@@ -8,12 +8,15 @@ import org.jsoup.nodes.Document;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.FilenameFilter;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpiderTest {
+
+
 
   @Test
   public void testSpider() {
@@ -22,9 +25,12 @@ public class SpiderTest {
   }
 
   @Test
-  public void testSpiderList() {
+  public void testSpiderList() throws FileNotFoundException {
+
     Spider spiders = new L4D2ccSpider("http://www.kk175.com/plus/list-8.html");
-    List<L4d2Map> list = spiders.spider();
+    List<L4d2MapDTO> list = spiders.spider().stream()
+            .sorted(Comparator.comparing(L4d2MapDTO::getSoccer).reversed())
+            .collect(Collectors.toList());
     list.forEach(System.out::println);
   }
 
@@ -48,4 +54,6 @@ public class SpiderTest {
         .map(x -> x.substring(0, x.indexOf(".")))
         .forEach(System.out::println);
   }
+
+
 }

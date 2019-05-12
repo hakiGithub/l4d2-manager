@@ -16,5 +16,5 @@ public @interface SpiderConfig {
   // 元素所在的位置
   int num() default 0;
   // 元素的属性
-  String attribute() default "text";
+  String attribute() default "";
 }

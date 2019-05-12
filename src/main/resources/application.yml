@@ -1,0 +1,22 @@
+###服务配置
+server:
+  ##配置端口
+  port: 8080
+  ##配置路径
+  servlet:
+    context-path: /l4d2
+
+spring:
+  datasource:   #配置sqlite
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite::resource:static/sqlite/l4d2.db
+  jpa:
+    hibernate: ##配置jpa属性,
+      ddl-auto: update  #update为若不存在表时，自动创建
+    show-sql: true    #打印sql日志
+    database-platform: com.haki.l4d2.manage.common.SQLiteDialect  #设置方言
+  swagger:  # 配置swagger，主要用于查看API信息
+    base-package: com.haki.l4d2  # 扫描的包路径,默认扫描所有
+    enabled: true
+
+

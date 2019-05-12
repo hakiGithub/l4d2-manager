@@ -1,8 +1,11 @@
 package com.haki.l4d2.manage.pojo;
 
-import com.haki.l4d2.manage.util.annotation.SpiderConfig;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +13,10 @@ import java.util.Date;
  * 求生之路地图
  */
 @Data
-public class L4d2Map implements Serializable {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class L4d2MapDTO implements Serializable {
+
+    String name;
 
     private static final long serialVersionUID = -4963383273534100784L;
     /**
@@ -36,6 +42,7 @@ public class L4d2Map implements Serializable {
     /**
      * 地图地址
      */
+    @NotEmpty(message = "不能为空")
     private String mapUrl;
     /**
      * 地图大小

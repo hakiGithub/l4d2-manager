@@ -1,7 +1,7 @@
 package com.haki.l4d2.manage.spider;
 
 
-import com.haki.l4d2.manage.pojo.L4d2Map;
+import com.haki.l4d2.manage.pojo.L4d2MapDTO;
 import com.haki.l4d2.manage.util.JsoupUtil;
 import org.jsoup.nodes.Document;
 
@@ -21,7 +21,7 @@ public abstract class Spider implements Callable<List>{
         return this.num;
     }
 
-    public abstract List<L4d2Map> spider();
+    public abstract List<L4d2MapDTO> spider();
 
     /**
      * @param url      爬取的页面

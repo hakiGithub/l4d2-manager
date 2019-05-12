@@ -1,19 +1,15 @@
 package com.haki.l4d2.manage.spider.impl;
 
 import com.google.common.collect.Lists;
-import com.haki.l4d2.manage.pojo.L4d2Map;
+import com.haki.l4d2.manage.pojo.L4d2MapDTO;
 import com.haki.l4d2.manage.spider.Spider;
 import com.haki.l4d2.manage.util.DateUtil;
-import com.haki.l4d2.manage.util.annotation.SpiderConfig;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 /**
@@ -28,12 +24,13 @@ public class L4D2ccSpider extends Spider{
     }
 
     @Override
-    public List<L4d2Map> spider() {
+    public List<L4d2MapDTO> spider() {
         //解析url
         Document document = parseHtml(url);
+        document.setBaseUri("http://www.kk175.com");
         //
         Elements els = document.select(".con_two_1 li");
-        List<L4d2Map> list = Lists.newArrayList();
+        List<L4d2MapDTO> list = Lists.newArrayList();
         //构建地图
         els.stream()
                 .map(this::buildMap)
@@ -45,6 +42,7 @@ public class L4D2ccSpider extends Spider{
     public void spiderNum(String url) {
         Document document = parseHtml(url);
         Element element = document.select(".pageinfo strong").first();
+        element.setBaseUri("http://www.kk175.com");
         String text = element.text();
         try {
             super.num = Integer.parseInt(text);
@@ -63,17 +61,17 @@ public class L4D2ccSpider extends Spider{
      * @auther: haki
      * @date: 2019/5/4 21:50
      */
-    private L4d2Map buildMap(Element element) {
-        L4d2Map map = new L4d2Map();
+    private L4d2MapDTO buildMap(Element element) {
+        L4d2MapDTO map = new L4d2MapDTO();
         //构建图片链接
-        String image = element.select("a img").first().attr("src");
+        String image = element.select("a img").first().absUrl("src");
         map.setMapImage(image);
         Element el = element.select("a").get(1);
         //构建地图名称
-        map.setMapName(el.ownText());
-        //构建地图详细地址
-        map.setMapUrl(el.attr("href"));
-        //构建地图下载次数
+        map.setMapName(el.text());
+       //构建地图详细地址
+       map.setMapUrl(el.absUrl("href"));
+       //构建地图下载次数
         Elements els = element.select(".list_download_num");
         String text = els.first().text();
         String[] split = text.trim().split("[:：]");
@@ -89,6 +87,8 @@ public class L4D2ccSpider extends Spider{
         map.setSoccer(Float.parseFloat(soccer));
         return map;
     }
+
+
 
     @Override
     public List call() throws Exception {
