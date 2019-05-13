@@ -1,7 +1,7 @@
 package com.haki.l4d2.manage.spider.impl;
 
 import com.google.common.collect.Lists;
-import com.haki.l4d2.manage.pojo.L4d2MapDTO;
+import com.haki.l4d2.manage.pojo.dto.L4d2MapDTO;
 import com.haki.l4d2.manage.spider.Spider;
 import com.haki.l4d2.manage.util.DateUtil;
 import org.jsoup.nodes.Document;

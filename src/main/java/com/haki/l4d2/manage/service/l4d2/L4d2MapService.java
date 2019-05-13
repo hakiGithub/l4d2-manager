@@ -1,6 +1,7 @@
 package com.haki.l4d2.manage.service.l4d2;
 
-import com.haki.l4d2.manage.pojo.L4d2MapDTO;
+import com.haki.l4d2.manage.common.pojo.PageParam;
+import com.haki.l4d2.manage.pojo.dto.L4d2MapDTO;
 
 import java.util.List;
 
@@ -11,5 +12,6 @@ import java.util.List;
  */
 public interface L4d2MapService {
 
-    public List<L4d2MapDTO> getAllL4d2Map();
+
+    public L4d2MapDTO getL4D2MapDTOByPage(PageParam pageParam);
 }

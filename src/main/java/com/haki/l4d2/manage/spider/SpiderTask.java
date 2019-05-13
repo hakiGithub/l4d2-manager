@@ -23,10 +23,7 @@ public class SpiderTask implements Task {
 
   @Override
   public void execute() {
-    int num = spider.num;
-    ExecutorService service = Executors.newFixedThreadPool(num);
-    List<Future<List>> futures = Lists.newArrayList();
 
-    futures.add(service.submit(spider));
   }
+
 }

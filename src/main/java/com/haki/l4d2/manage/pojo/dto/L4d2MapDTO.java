@@ -1,4 +1,4 @@
-package com.haki.l4d2.manage.pojo;
+package com.haki.l4d2.manage.pojo.dto;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -16,7 +16,6 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class L4d2MapDTO implements Serializable {
 
-    String name;
 
     private static final long serialVersionUID = -4963383273534100784L;
     /**
@@ -42,7 +41,6 @@ public class L4d2MapDTO implements Serializable {
     /**
      * 地图地址
      */
-    @NotEmpty(message = "不能为空")
     private String mapUrl;
     /**
      * 地图大小
@@ -66,4 +64,6 @@ public class L4d2MapDTO implements Serializable {
      *
      */
     private String author;
+
+
 }
